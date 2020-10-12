@@ -12,55 +12,95 @@
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/JosuePlacido/NLW-03?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/JosuePlacido/NLW-03?color=56BEB8">
+   <a href="https://www.linkedin.com/in/gabriel-pereira-oliveira-78b1801ab/">
+    <img alt="Made by JosuePlacido" src="https://img.shields.io/badge/made%20by-JosuePlacido-%2304D361">
+  </a>
+
+  <a href="https://github.com/JosuePlacido/nlw-03/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/JosuePlacido/Nlw-03">
+  </a>
+
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 
   <img alt="Github issues" src="https://img.shields.io/github/issues/JosuePlacido/NLW-03?color=56BEB8" />
 
   <img alt="Github forks" src="https://img.shields.io/github/forks/JosuePlacido/NLW-03?color=56BEB8" />
-
-  <img alt="Github stars" src="https://img.shields.io/github/stars/JosuePlacido/NLW-03?color=56BEB8" />
+   <a href="https://github.com/JosuePlacido/nlw-03/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/JosuePlacido/nlw-03?style=social">
+  </a>
 </p>
 
-<br>
+## 📝 Conteúdo
 
-## :dart: About
+1. <a href="#nwl">O que há na Next Level Week?</a>
+1. <a href="#about">Sobre</a>
+1. <a href="#getting_started">Iniciando</a>
+1. <a href="#built_using">Tecnologias Utilizadas</a>
+1. <a href="#contribute">Como contribuir</a>
 
-Dropbox is a service for storing and sharing files. It is based on the concept of "cloud computing". It belongs to Dropbox Inc., based in San Francisco, California, USA. The company that developed the program provides computer centers that store its customers' files.
+## 🧐 Sobre <a name = "about"></a>
 
-## :rocket: Technologies
+Happy é uma Aplicação feita durante a **NWL 3.0** oferecido pela [Rocketseat] :rocket:.<br/>
+A aplicação visa estabelecer um contato entre as pessoas que deseja visitar um orfanato e os orfanatos
+mais próximos de sua localização. Como a aplicação foi feita nos dias das crianças, o melhor presente
+que uma criança pode ganhar é o seu tempo e sua atenção a ela.<br/>
 
-The following tools were used in this project:
+## 🏁 Iniciando <a name = "getting_started"></a>
 
--   [React](https://pt-br.reactjs.org/)
--   [TypeScript](https://www.typescriptlang.org/)
+Instruções de como acessar as rotas e instalação.
 
-## :white_check_mark: Requirements
+### ⚒ Instalando <a name = "installing"></a>
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
-
-## :checkered_flag: Starting
-
-```bash
-# Clone this project
-$ git clone https://github.com/miguelrisquelme/happy_web.git
-
-# Access
-$ cd happy_web
-
-# Install dependencies
-$ yarn install
-
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
 ```
 
-## :memo: License
+git clone https://github.com/JosuePlacido/NLW-03.git
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+# Go into the backend repository
 
-Made with :heart: by <a href="https://github.com/josueplacido" target="_blank">Josué Placido</a>
+$ cd Happy
+
+... 🚧 em construção 🚧...
+
+# 💻 Iniciando com o Front-end
+
+... 🚧 em construção 🚧...
+
+# 📱 Iniciando com o Mobile
+
+... 🚧 em construção 🚧...
+
+```
+
+## ⛏️ Tecnologias Utilizadas <a name = "built_using"></a>
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+-   🔵 [TypeScript][typescript]
+-   ⚛️ [React][reactjs]
+-   💅 [Styled-components][styled-components]
+    ... 🚧 em construção 🚧...
+
+## 🤔 Como contribuir <a name = "contribute"></a>
+
+-   Faça um fork desse repositório;
+-   Cria uma branch com a sua feature: `git checkout -b minha-feature`;
+-   Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
+-   Faça push para a sua branch: `git push origin minha-feature`.
+
+Feito com ❤️ por Josué Placido 👋🏽 [Entre em contato!](https://www.linkedin.com/in/josue-placido-da-silveira-junior-28a5941b4/)
+
+[expo]: https://expo.io/
+[image-picker]: https://docs.expo.io/versions/latest/sdk/imagepicker/
+[handlebars]: https://handlebarsjs.com/
+[postgres]: https://www.postgresql.org/
+[typeorm]: https://typeorm.io/#/
+[nodejs]: https://nodejs.org/en/
+[redis]: https://redis.io/
+[typescript]: https://www.typescriptlang.org/
+[reactjs]: https://reactjs.org
+[reactnative]: https://reactnative.dev/
+[rs]: https://rocketseat.com.br
+[rocketseat]: https://github.com/Rocketseat
 
 &#xa0;
 
