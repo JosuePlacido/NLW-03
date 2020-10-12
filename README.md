@@ -32,7 +32,6 @@
 
 ## 📝 Conteúdo
 
-1. <a href="#nwl">O que há na Next Level Week?</a>
 1. <a href="#about">Sobre</a>
 1. <a href="#getting_started">Iniciando</a>
 1. <a href="#built_using">Tecnologias Utilizadas</a>
