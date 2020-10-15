@@ -1,57 +1,164 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiPlus, FiSun, FiMoon } from 'react-icons/fi';
-import { TileLayer } from 'react-leaflet';
+import React, { useEffect, useMemo, useState } from 'react';
+// import { FaWhatsapp } from "react-icons/fa";
+import { FiClock, FiInfo } from 'react-icons/fi';
+import { Map, Marker, TileLayer } from 'react-leaflet';
+import Leaflet from 'leaflet';
+import api from '@nlw03/axios-config';
+import SideBar from '../../components/sidebar';
 import { useTheme } from '../../contexts/themes';
-
-import 'leaflet/dist/leaflet.css';
-
-import { Container, Maps } from './styles';
-
 import mapMarkerLight from '../../images/map-marker-light.svg';
 import mapMarkerDark from '../../images/map-marker-dark.svg';
+import { useParams } from 'react-router-dom';
 
-function OrphanagesMap() {
-	const { ToggleTheme, theme } = useTheme();
+import { Container, Detail, Content } from './styles';
+
+interface OrphanageProps {
+	name: string;
+	latitude: number;
+	longitude: number;
+	about: string;
+	instructions: string;
+	opening_hours: string;
+	open_on_weekends: string;
+	images: Array<{
+		url: string;
+		id: string;
+	}>;
+}
+
+interface RouteParams {
+	id: string;
+}
+
+export default function Orphanage() {
+	const params = useParams<RouteParams>();
+	const { theme } = useTheme();
+	const [orphanage, setOrphanage] = useState<OrphanageProps>();
+	const [activeIndex, setActiveIndex] = useState(0);
+
+	const { id } = params;
+
+	useEffect(() => {
+		api.get(`/orphanages/${id}`).then(response => {
+			setOrphanage(response.data);
+		});
+	}, [id]);
+
+	const mapIcon = useMemo(() => {
+		return Leaflet.icon({
+			iconUrl: theme.title === 'light' ? mapMarkerLight : mapMarkerDark,
+
+			iconSize: [58, 68],
+			iconAnchor: [29, 68],
+			popupAnchor: [170, 2]
+		});
+	}, [theme]);
+
+	if (!orphanage) {
+		return <p>Carregando...</p>;
+	}
 
 	return (
 		<Container>
-			<aside>
-				<header>
-					{theme.title === 'light' ? (
-						<img src={mapMarkerLight} alt="Happy" />
-					) : (
-						<img src={mapMarkerDark} alt="Happy" />
-					)}
+			<SideBar />
 
-					<h2>Escolha um orfanato no mapa</h2>
-					<p>Muitas crianças estão esperando a sua visita :)</p>
-				</header>
+			<main>
+				<Detail>
+					<img
+						src={orphanage.images[activeIndex].url}
+						alt={orphanage.name}
+					/>
 
-				<footer>
-					<div className="location">
-						<strong>Medianeira</strong>
-						<span>Paraná</span>
+					<div className="images">
+						{orphanage.images.map((image, index) => (
+							<button
+								className={
+									activeIndex === index ? 'active' : ''
+								}
+								type="button"
+								key={image.id}
+								onClick={() => {
+									setActiveIndex(index);
+								}}
+							>
+								<img src={image.url} alt="Lar das meninas" />
+							</button>
+						))}
 					</div>
-					<button type="button" onClick={ToggleTheme}>
-						{theme.title === 'light' ? (
-							<FiMoon size={32} color="#fff" />
-						) : (
-							<FiSun size={32} color="#fff" />
-						)}
-					</button>
-				</footer>
-			</aside>
 
-			<Maps center={[-25.295, -54.095]} zoom={16.4}>
-				<TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-			</Maps>
+					<Content>
+						<h1>{orphanage.name}</h1>
+						<p>{orphanage.about}</p>
 
-			<Link to="" className="create-orphanage">
-				<FiPlus size={32} color="#fff" />
-			</Link>
+						<div className="map-container">
+							<Map
+								center={[
+									orphanage.latitude,
+									orphanage.longitude
+								]}
+								zoom={16}
+								style={{ width: '100%', height: 280 }}
+								dragging={false}
+								touchZoom={false}
+								zoomControl={false}
+								scrollWheelZoom={false}
+								doubleClickZoom={false}
+							>
+								<TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+								<Marker
+									interactive={false}
+									icon={mapIcon}
+									position={[
+										orphanage.latitude,
+										orphanage.longitude
+									]}
+								/>
+							</Map>
+
+							<footer>
+								<a
+									target="_blank"
+									rel="noopener noreferrer"
+									href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage.longitude}`}
+								>
+									Ver rotas no Google Maps
+								</a>
+							</footer>
+						</div>
+
+						<hr />
+
+						<h2>Instruções para visita</h2>
+						<p>{orphanage.instructions}</p>
+
+						<div className="open-details">
+							<div className="hour">
+								<FiClock size={32} color="#15B6D6" />
+								Segunda à Sexta <br />
+								{orphanage.opening_hours}
+							</div>
+
+							{orphanage.open_on_weekends ? (
+								<div className="open-on-weekends">
+									<FiInfo size={32} color="#39CC83" />
+									Atendemos <br />
+									fim de semana
+								</div>
+							) : (
+								<div className="open-on-weekends dont-open">
+									<FiInfo size={32} color="#ff669d" />
+									Não atendemos <br />
+									fim de semana
+								</div>
+							)}
+						</div>
+						{/* <button type="button" className="contact-button">
+              <FaWhatsapp size={20} color="#FFF" />
+              Entrar em contato
+            </button> */}
+					</Content>
+				</Detail>
+			</main>
 		</Container>
 	);
 }
-
-export default OrphanagesMap;

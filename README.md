@@ -32,18 +32,10 @@
 
 ## 📝 Conteúdo
 
-1. <a href="#nwl">O que há na Next Level Week?</a>
 1. <a href="#about">Sobre</a>
 1. <a href="#getting_started">Iniciando</a>
 1. <a href="#built_using">Tecnologias Utilizadas</a>
 1. <a href="#contribute">Como contribuir</a>
-
-## 🧐 Sobre <a name = "about"></a>
-
-Happy é uma Aplicação feita durante a **NWL 3.0** oferecido pela [Rocketseat] :rocket:.<br/>
-A aplicação visa estabelecer um contato entre as pessoas que deseja visitar um orfanato e os orfanatos
-mais próximos de sua localização. Como a aplicação foi feita nos dias das crianças, o melhor presente
-que uma criança pode ganhar é o seu tempo e sua atenção a ela.<br/>
 
 ## 🏁 Iniciando <a name = "getting_started"></a>
 
@@ -55,11 +47,15 @@ Instruções de como acessar as rotas e instalação.
 
 git clone https://github.com/JosuePlacido/NLW-03.git
 
-# Go into the backend repository
+1.``git clone https://github.com/Gabrielpdev/Happy.git``<br/>
 
-$ cd Happy
+#### ⚙️ Iniciando com o Back-end
 
-... 🚧 em construção 🚧...
+Entrando no backend <br/> <br/>
+2. ``cd Happy``<br/>
+3. Configure o arquivo ``ormconfig.json`` de acordo com seu banco de dados <br/>
+4. ``yarn typeorm migration:run`` <br/>
+5. ``yarn dev`` <br/>
 
 # 💻 Iniciando com o Front-end
 
@@ -76,6 +72,10 @@ $ cd Happy
 As seguintes ferramentas foram usadas na construção do projeto:
 
 -   🔵 [TypeScript][typescript]
+-   🟢 [Node Js][nodejs]
+-   ⚙ [TypeORM][typeorm]
+-   🐘 [Postgres][postgres]
+-   ✅ [Yup][yup]
 -   ⚛️ [React][reactjs]
 -   💅 [Styled-components][styled-components]
     ... 🚧 em construção 🚧...
