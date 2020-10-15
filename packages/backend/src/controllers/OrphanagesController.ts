@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
+import { uuid } from 'uuidv4';
 import * as Yup from "yup";
 
 import Orphanage from "../models/Orphanage";
@@ -26,41 +27,59 @@ export default {
 
     return res.json(orphanageView.render(orphanage));
   },
-  async create(req: Request, res: Response) {
-    const orphanagesRepository = getRepository(Orphanage);
+  async create(request: Request, response: Response) {
+    const {
+      name,
+      latitude,
+      longitude,
+      about,
+      opening_hours,
+      instructions,
+      open_on_weekends,
+    } = request.body;
 
-    const requestImages = req.files as Express.Multer.File[];
+    const orphanageRepository = getRepository(Orphanage);
 
-    const images = requestImages.map((image) => {
-      return { path: image.filename };
+    const requestImages = request.files as Express.Multer.File[];
+    const images = requestImages.map(image => {
+      return { id: uuid(), path: image.filename };
     });
 
+    const data = {
+      id: uuid(),
+      name,
+      latitude,
+      longitude,
+      about,
+      instructions,
+      opening_hours,
+      open_on_weekends: open_on_weekends === 'true',
+      images,
+    };
+
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
+    	name: Yup.string().required(),
       latitude: Yup.number().required(),
       longitude: Yup.number().required(),
-      about: Yup.string().required().max(300),
       instructions: Yup.string().required(),
+      about: Yup.string().max(300).required(),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
       images: Yup.array(
         Yup.object().shape({
           path: Yup.string().required(),
-        })
+        }),
       ),
     });
 
-    await schema.validate(
-      { ...req.body, images },
-      {
-        abortEarly: false,
-      }
-    );
+    await schema.validate(data, {
+      abortEarly: false,
+    });
 
-    const orphanage = orphanagesRepository.create({ ...req.body, images });
+    const orphanage = orphanageRepository.create(data);
 
-    await orphanagesRepository.save(orphanage);
+    await orphanageRepository.save(orphanage);
 
-    return res.status(201).json(orphanage);
+    return response.status(201).json(orphanage);
   },
 };
