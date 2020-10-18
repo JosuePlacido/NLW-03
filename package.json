@@ -27,6 +27,9 @@
 			"git add"
 		]
 	},
+  "dependencies": {
+    "typeorm": "^0.2.27"
+  },
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
