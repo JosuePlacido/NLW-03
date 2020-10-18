@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-// import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp } from 'react-icons/fa';
 import { FiClock, FiInfo } from 'react-icons/fi';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import Leaflet from 'leaflet';
@@ -14,6 +14,7 @@ import { Container, Detail, Content } from './styles';
 
 interface OrphanageProps {
 	name: string;
+	whatsapp: string;
 	latitude: number;
 	longitude: number;
 	about: string;
@@ -44,6 +45,9 @@ export default function Orphanage() {
 		});
 	}, [id]);
 
+	function handleLinkToWhatsApp() {
+		window.open(`https://wa.me/${orphanage?.whatsapp}`, '_blank');
+	}
 	const mapIcon = useMemo(() => {
 		return Leaflet.icon({
 			iconUrl: theme.title === 'light' ? mapMarkerLight : mapMarkerDark,
@@ -152,10 +156,14 @@ export default function Orphanage() {
 								</div>
 							)}
 						</div>
-						{/* <button type="button" className="contact-button">
-              <FaWhatsapp size={20} color="#FFF" />
-              Entrar em contato
-            </button> */}
+						<button
+							type="button"
+							onClick={handleLinkToWhatsApp}
+							className="contact-button"
+						>
+							<FaWhatsapp size={20} color="#FFF" />
+							Entrar em contato
+						</button>
 					</Content>
 				</Detail>
 			</main>

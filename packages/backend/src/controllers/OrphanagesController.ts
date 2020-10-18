@@ -29,7 +29,8 @@ export default {
   },
   async create(request: Request, response: Response) {
     const {
-      name,
+	  name,
+	  whatsapp,
       latitude,
       longitude,
       about,
@@ -47,7 +48,8 @@ export default {
 
     const data = {
       id: uuid(),
-      name,
+	  name,
+	  whatsapp: whatsapp.replace(/\D/g, ""),
       latitude,
       longitude,
       about,
@@ -59,6 +61,7 @@ export default {
 
     const schema = Yup.object().shape({
     	name: Yup.string().required(),
+    	whatsapp: Yup.string().required().length(11),
       latitude: Yup.number().required(),
       longitude: Yup.number().required(),
       instructions: Yup.string().required(),

@@ -11,7 +11,7 @@ import {
 import MapView, { Marker } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import api from '@nlw03/axios-config';
-import styles, {
+import {
 	ContactButton,
 	ContactText,
 	Container,
@@ -40,6 +40,7 @@ interface OrphanageDetailsRouteParams {
 interface Orphanage {
 	id: number;
 	name: string;
+	whatsapp: string;
 	latitude: number;
 	longitude: number;
 	about: string;
@@ -61,6 +62,9 @@ export default function OrphanageDetails() {
 		});
 	}, [params.id]);
 
+	function handleLinkToWhatsApp() {
+		Linking.openURL(`whatsapp://send?phone=${orphanage?.whatsapp}`);
+	}
 	if (!orphanage) {
 		return (
 			<Container>
@@ -145,7 +149,7 @@ export default function OrphanageDetails() {
 					</ScheduleItem>
 				</ScheduleContainer>
 
-				<ContactButton onPress={() => {}}>
+				<ContactButton onPress={handleLinkToWhatsApp}>
 					<FontAwesome name="whatsapp" size={24} color="#FFF" />
 					<ContactText>Entrar em contato</ContactText>
 				</ContactButton>

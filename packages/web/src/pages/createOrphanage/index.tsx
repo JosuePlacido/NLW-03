@@ -27,6 +27,7 @@ export default function CreateOrphanage() {
 	const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
 	const [name, setName] = useState('');
+	const [whatsapp, setWhatsapp] = useState('');
 	const [about, setAbout] = useState('');
 	const [instructions, setInstructions] = useState('');
 	const [opening_hours, setOpeningHours] = useState('');
@@ -49,7 +50,6 @@ export default function CreateOrphanage() {
 			}
 		);
 	}, []);
-
 	const handleMapClick = useCallback((event: LeafletMouseEvent) => {
 		const { lat, lng } = event.latlng;
 		setPosition({
